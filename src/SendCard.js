@@ -19,7 +19,7 @@ const SendCard = (props) => {
                   alert('Yay! Your eCard has been sent out to the QA team for signing.')
               }, (error) => {
                   console.log(error.text);
-                  alert(`Oh no! We were not able to successfuly send your eCard. Please refer to this error message: ${error.text}`)
+                  alert(`Oh no! We were not able to successfuly send your eCard. Please refer to this error message:\n\n⚠️${error.text}`)
               });
             }
           } else {
