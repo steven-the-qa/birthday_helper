@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/birthday_helper/static/css/main.b381a68e.chunk.css",
-    "main.js": "/birthday_helper/static/js/main.fe0d14b2.chunk.js",
-    "main.js.map": "/birthday_helper/static/js/main.fe0d14b2.chunk.js.map",
+    "main.js": "/birthday_helper/static/js/main.ab5213b9.chunk.js",
+    "main.js.map": "/birthday_helper/static/js/main.ab5213b9.chunk.js.map",
     "runtime-main.js": "/birthday_helper/static/js/runtime-main.792c9bb6.js",
     "runtime-main.js.map": "/birthday_helper/static/js/runtime-main.792c9bb6.js.map",
     "static/js/2.455b93ed.chunk.js": "/birthday_helper/static/js/2.455b93ed.chunk.js",
     "static/js/2.455b93ed.chunk.js.map": "/birthday_helper/static/js/2.455b93ed.chunk.js.map",
     "index.html": "/birthday_helper/index.html",
-    "precache-manifest.6164e26e90e059640352ce0a59eed307.js": "/birthday_helper/precache-manifest.6164e26e90e059640352ce0a59eed307.js",
+    "precache-manifest.2b250db5408e35b8fb3b5851d367b034.js": "/birthday_helper/precache-manifest.2b250db5408e35b8fb3b5851d367b034.js",
     "service-worker.js": "/birthday_helper/service-worker.js",
     "static/css/main.b381a68e.chunk.css.map": "/birthday_helper/static/css/main.b381a68e.chunk.css.map",
     "static/js/2.455b93ed.chunk.js.LICENSE.txt": "/birthday_helper/static/js/2.455b93ed.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.792c9bb6.js",
     "static/js/2.455b93ed.chunk.js",
     "static/css/main.b381a68e.chunk.css",
-    "static/js/main.fe0d14b2.chunk.js"
+    "static/js/main.ab5213b9.chunk.js"
   ]
 }
