@@ -1,0 +1,173 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap);
+
+body {
+  background-color: #34ace0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-width: 1800px;
+}
+
+a {
+  text-decoration: none;
+  color: #34ace0;
+  font-weight: bold;
+}
+
+a:hover, a:focus {
+  font-size: 1.2em;
+  text-decoration: underline;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  min-width: 500px;
+  text-align: center;
+}
+
+.container-getting-started {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+  font-size: .9em;
+  border: 3px solid #f6e58d;
+  background-color: rgb(32, 67, 102);
+  color: #f1f2f6;
+}
+
+.container-file {
+  display: flex;
+  flex-direction: column;
+}
+
+.birthdayPersonInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 200px;
+  border: 3px solid #f1f2f6;
+}
+
+.container-data {
+  display: flex;
+  padding: 0em 1em;
+}
+
+h1, h2, label {
+  color: #f6e58d;
+}
+
+h3 {
+  color: #f1f2f6;
+  text-align: center;
+  letter-spacing: 1.25px;
+}
+
+label, button, #submit-btn {
+  font-weight: bold;
+}
+
+.input-text {
+  padding: .5em 0;
+}
+
+.input-file {
+  margin-top: 1em;
+}
+
+.editableFields:hover, .editableFields:focus {
+  transform: scale(1.1);
+}
+
+#advisory {
+  color: black;
+  background-color: #f1f2f6;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.recipientEmail {
+  color: black;
+  background-color: #2ecc71;
+  padding: .5em;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 0 1em;
+}
+
+.recipientEmail:hover, .recipientEmail:focus {
+  transform: scale(3);
+  cursor: pointer;
+  background-color: #11e268;
+}
+
+button, #submit-btn {
+  padding: .5em;
+  background-color: #2ecc71;
+}
+
+button:focus, button:hover, #submit-btn:focus, #submit-btn:hover {
+  transform: scale(1.1);
+  background-color: #11e268;
+  cursor: pointer;
+}
+
+.ul-data {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.ul-tips {
+  margin-top: 0;
+  font-size: .9em;
+}
+
+li {
+  margin: 1em 0;
+}
+
+section {
+  margin: 1em 3em;
+  border-radius: 5px;
+  padding: 2em;
+}
+
+.column {
+  height: 500px;
+  min-width: 250px;
+  overflow-y: scroll;
+  border: 3px solid #ecf0f1;
+}
+
+#column-titles {
+  color: #ecf0f1;
+}
+
+#email-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  height: 550px;
+  overflow-y: scroll;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin: .5em 0;
+  padding: 0 1em;
+}
+
+#submit-btn {
+  margin: 0 1em;
+}
