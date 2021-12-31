@@ -7,50 +7,23 @@ const SendCard = (props) => {
   const sendEmail = (e) => {
     e.preventDefault();
     if (props.teamName === 'Select your team') {
-      alert('Please choose your team\'s name from the list.\n\nIf your team is not on the list, contact Steven in QA about getting your team set up to use this tool. Thank you!')
+      alert('Please choose your team\'s name from the list.')
     } else if (props.occasion === 'Select one') {
-      alert('Please select either Birthday or Fetchiversary for the Occasion field.')
+      alert('Please select either Birthday or Work Anniversary for the Occasion field.')
       } else {
           if (window.confirm('Are you sure you want to send this eCard to your team for signing?')) {
-            if (props.teamName === 'QA') {
-              emailjs.sendForm('service_m8joa5x', 'qa_bday_fetchiversary', form.current, 'user_xVl1ngq3WZGS7s1PEVLcD')
+            if (props.teamName === 'Your Team Name') {
+              emailjs.sendForm('SERVICE_ID', 'TEMPLATE_ID', form.current, 'USER_ID')
               .then((result) => {
                   console.log(result.text);
                   alert('Yay! Your eCard has been sent out to the QA team for signing.')
               }, (error) => {
                   console.log(error.text);
-                  alert(`Oh no! We were not able to successfuly send your eCard. Please reach out to Steven in QA for troubleshooting.\nBe sure to bring a copy of this error message: ${error.text}`)
+                  alert(`Oh no! We were not able to successfuly send your eCard. Please refer to this error message: ${error.text}`)
               });
-            } else if (props.teamName === 'Fraud') {
-                emailjs.sendForm('service_nwdrjd8', 'template_fpj7t9h', form.current, 'user_MprloyfAX6KHYk5heeHq8')
-                .then((result) => {
-                    console.log(result.text);
-                    alert('Yay! Your eCard has been sent out to the Fraud team for signing.')
-                }, (error) => {
-                    console.log(error.text);
-                    alert(`Oh no! We were not able to successfuly send your eCard. Please reach out to Steven in QA for troubleshooting.\nBe sure to bring a copy of this error message: ${error.text}`)
-                });
-              } else if (props.teamName === 'Data Integrity') {
-                  emailjs.sendForm('service_nsizf8t', 'template_iepf23n', form.current, 'user_sS2mN5EUqz6iKBjdnGSBi')
-                  .then((result) => {
-                      console.log(result.text);
-                      alert('Yay! Your eCard has been sent out to the Data Integrity team for signing.')
-                  }, (error) => {
-                      console.log(error.text);
-                      alert(`Oh no! We were not able to successfuly send your eCard. Please reach out to Steven in QA for troubleshooting.\nBe sure to bring a copy of this error message: ${error.text}`)
-                  });
-                } else if (props.teamName === 'Support') {
-                    emailjs.sendForm('service_mda3oke', 'template_hlckzb8', form.current, 'user_oqkBjOxwvA4tNkKYqrvia')
-                    .then((result) => {
-                        console.log(result.text);
-                        alert('Yay! Your eCard has been sent out to the Support team for signing.')
-                    }, (error) => {
-                        console.log(error.text);
-                        alert(`Oh no! We were not able to successfuly send your eCard. Please reach out to Steven in QA for troubleshooting.\nBe sure to bring a copy of this error message: ${error.text}`)
-                    });
-                  }
+            }
           } else {
-              alert('Your eCard has not been sent. Please ensure you have filled out the form completely with valid data.')
+              alert('Your eCard has not been sent. Please ensure you have filled out the form completely with valid data.\n\nIf this is your first time using this tool, you will need to download the project and add your EmailJS service, template, and user ids before the form will send anything.')
             }
         }
   };
@@ -80,7 +53,7 @@ const SendCard = (props) => {
         <select type="text" name="occasion" id='occasion' onChange={props.updateOccasionDate} className='input-text editableFields'>
           <option>Select one</option>
           <option>Birthday</option>
-          <option>Fetchiversary</option>
+          <option>Work Anniversaries</option>
         </select>
       </div>
       <div className="inputContainer">

@@ -14,7 +14,7 @@ function App() {
   const [birthdayPersonLastName, setBirthdayPersonLastName] = useState('')
   const [birthdayPersonEmail, setBirthdayPersonEmail] = useState('')
   const [birthdayPersonBirthday, setBirthdayPersonBirthday] = useState('')
-  const [birthdayPersonFetchiversary, setBirthdayPersonFetchiversary] = useState('')
+  const [birthdayPersonWorkAnniversary, setBirthdayPersonWorkAnniversary] = useState('')
   const [occasionDate, setOccasionDate] = useState('')
   const [occasion, setOccasion] = useState('Select one')
   const [mailingList, setMailingList] = useState('')
@@ -25,7 +25,7 @@ function App() {
   const notifyUserOfFormat = () => {
     alert(`
       Your CSV should have this format:\n\n
-      Row 1 -> name, email, birthday, fetchiversary\n
+      Row 1 -> name, email, birthday, work anniversary\n
       Row 2 -> Test User1, test1@user.com, January 1, January 10\n
       Row 3 -> Test User2, test2@user.com, February 2, February 20\n
       Row 4 -> Test User3, test3@user.com, March 3, March 30\n
@@ -56,7 +56,7 @@ function App() {
         name: person.name,
         email: person.email,
         birthday: person.birthday,
-        fetchiversary: person.fetchiversary
+        workAnniversary: person.workAnniversary
       }
     })
 
@@ -69,23 +69,19 @@ function App() {
     if (document.getElementById('occasion').value === 'Birthday') {
       setOccasion('Birthday')
       setOccasionDate(birthdayPersonBirthday)
-    } else if (document.getElementById('occasion').value === 'Fetchiversary') {
-      setOccasion('Fetchiversary')
-      setOccasionDate(birthdayPersonFetchiversary)
+    } else if (document.getElementById('occasion').value === 'Work Anniversary') {
+      setOccasion('Work Anniversary')
+      setOccasionDate(birthdayPersonWorkAnniversary)
     } else {
       setOccasion('Select one')
       setOccasionDate('Select an occasion')
     }
-  }, [birthdayPersonBirthday, birthdayPersonFetchiversary])
+  }, [birthdayPersonBirthday, birthdayPersonWorkAnniversary])
 
   const updateTeamName = () => {
-    if (document.getElementById('teamName').value === 'QA') {
-      setTeamName('QA')
-    } else if (document.getElementById('teamName').value === 'Fraud') {
-      setTeamName('Fraud')
-      } else if (document.getElementById('teamName').value === 'Data Integrity') {
-          setTeamName('Data Integrity')
-        } else {
+    if (document.getElementById('teamName').value === 'Your Team Name') {
+      setTeamName('Your Team Name')
+    } else {
             setTeamName('Select your team')
           }
   }
@@ -106,7 +102,7 @@ function App() {
       setBirthdayPersonLastName(birthdayPerson ? birthdayPerson.name.split(' ')[1] : 'Last name not found')
       setBirthdayPersonEmail(birthdayPerson ? birthdayPerson.email : 'Email not found')
       setBirthdayPersonBirthday(birthdayPerson ? birthdayPerson.birthday : 'Birthday not found')
-      setBirthdayPersonFetchiversary(birthdayPerson ? birthdayPerson.fetchiversary : 'Fetchiversary not found')
+      setBirthdayPersonWorkAnniversary(birthdayPerson ? birthdayPerson.workAnniversary : 'Work Anniversary not found')
     } else {
       console.log('Birthday person data cannot be updated')
     }
@@ -153,24 +149,24 @@ function App() {
     }
   })
 
-  let fetchiversaries = birthdayPeople.map(person => {
-    return { "name": person.name, "fetchiversary": person.fetchiversary }
-  }).sort((a,b) => { return new Date(a.fetchiversary) - new Date(b.fetchiversary) })
+  let workAnniversaries = birthdayPeople.map(person => {
+    return { "name": person.name, "workAnniversary": person.workAnniversary }
+  }).sort((a,b) => { return new Date(a.workAnniversary) - new Date(b.workAnniversary) })
 
-  const fetchiversariesInOrder = fetchiversaries.map(person => {
-    if (person.fetchiversary === '') {
-      return <li key={`${person.fetchiversary}`}style={{'color': 'red'}}><strong>{person.name}</strong></li>
+  const workAnniversariesInOrder = workAnniversaries.map(person => {
+    if (person.workAnniversary === '') {
+      return <li key={`${person.workAnniversary}`}style={{'color': 'red'}}><strong>{person.name}</strong></li>
     }
     else {
-      return <li key={`${person.fetchiversary}`}>{person.fetchiversary} ({person.name})</li>
+      return <li key={`${person.workAnniversary}`}>{person.workAnniversary} ({person.name})</li>
     }
   })
 
   const recipientsContent = recipients.length === 0 
     ? 
       <ol>
-        <li key='manual-step1'>Enter the first and last name of the Birthday/Fetchiversary Person in the field above</li>
-        <li key='manual-step2'>Click Update, and you should see the mailing list appear in this container (excluding the Birthday/Fetchiversary Person)</li>
+        <li key='manual-step1'>Enter the first and last name of the Birthday/Work Anniversary Person in the field above</li>
+        <li key='manual-step2'>Click Update, and you should see the mailing list appear in this container (excluding the Birthday/Work Anniversary Person)</li>
       </ol>
     : <ul className='ul-data'>{recipients}</ul>
 
@@ -206,20 +202,17 @@ function App() {
           <li key='step5'>Create the eCard on a platform of your choosing. We recommend <a rel='noopener noreferrer' target='_blank' href='https://sendwishonline.com/en/group-cards/category'>SendWishOnline</a></li>
           <li key='step6'>Copy the shareable link for the eCard you created, so you can distribute it to other team members for signing</li>
           <li key='step7'>Fill out the rest of the form, ensuring you choose the correct <strong>Team</strong> and <strong>Occasion</strong></li>
-          <ul>
-            <li key='step7a'>If you don't see your team name, ask Steven in QA to get you set up with a free account for sending templated emails</li>
-          </ul>
           <li key='step8'>Click <strong>Send</strong> to distribute your eCard to the team for signing. Give the team enough time to sign it before it arrives in your team member's inbox!</li>
         </ol>
       </section>
 
       <section className='birthdayPersonInput'>
         <div className='container-file'>
-          <label className='label-file' htmlFor="file" onClick={notifyUserOfFormat}>Upload your CSV of names, emails, and birthdays:</label>
+          <label className='label-file' htmlFor="file" onClick={notifyUserOfFormat}>Upload your CSV of names, emails, birthdays, and work anniversaries:</label>
           <input type="file" accept=".csv" multiple={false} onChange={handleCSV} name="file" id="file" className="input-file" />
         </div>
         <br></br>
-        <label htmlFor='birthdayPerson'>Birthday/Fetchiversary Person</label>
+        <label htmlFor='birthdayPerson'>Birthday/Work Anniversary Person</label>
         <input type='text' name='birthdayPerson' className='input-text editableFields' id="nameInput" />
         <button onClick={updateBirthdayPerson}>Update</button>
       </section>
@@ -227,11 +220,11 @@ function App() {
       <p id="advisory">
         Schedule the eCard to be sent to 
           <strong className='recipientEmail' onClick={copyToClipboard}>
-            <span id='emailText'>{birthdayPersonEmail ? birthdayPersonEmail : 'Birthday/Fetchiversary Person\'s Email'}</span>
+            <span id='emailText'>{birthdayPersonEmail ? birthdayPersonEmail : 'Birthday/Work Anniversary Person\'s Email'}</span>
             <span>{' '}</span>
             <FontAwesomeIcon icon={faCopy} />
           </strong> 
-        on their birthday/Fetchiversary.<br /><br />Do <strong>not</strong> include their email in the <strong>List of Recipients</strong> below.
+        on their birthday/work anniversary.<br /><br />Do <strong>not</strong> include their email in the <strong>List of Recipients</strong> below.
       </p>
 
       <SendCard
@@ -252,8 +245,8 @@ function App() {
         </section>
 
         <section className='column'>
-          <h3>Fetchiversaries</h3>
-          <ul className='ul-data'>{fetchiversariesInOrder}</ul>
+          <h3>Work Anniversaries</h3>
+          <ul className='ul-data'>{workAnniversariesInOrder}</ul>
         </section>
 
         <section className='column'>
