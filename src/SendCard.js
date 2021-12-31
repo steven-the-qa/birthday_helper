@@ -34,10 +34,7 @@ const SendCard = (props) => {
         <label>Team</label>
         <select type="text" name="teamName" id='teamName' onChange={props.updateTeamName} className='input-text editableFields'>
           <option>Select your team</option>
-          <option>QA</option>
-          <option>Fraud</option>
-          <option>Data Integrity</option>
-          <option>Support</option>
+          <option>Your Team Name</option>
         </select>
       </div>
       <div className='inputContainer'>
@@ -53,7 +50,7 @@ const SendCard = (props) => {
         <select type="text" name="occasion" id='occasion' onChange={props.updateOccasionDate} className='input-text editableFields'>
           <option>Select one</option>
           <option>Birthday</option>
-          <option>Work Anniversaries</option>
+          <option>Work Anniversary</option>
         </select>
       </div>
       <div className="inputContainer">
