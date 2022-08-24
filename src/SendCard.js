@@ -29,43 +29,43 @@ const SendCard = (props) => {
   };
 
   return (
-    <form ref={form} onSubmit={sendEmail} id='email-form'>
-      <div className='inputContainer'>
+    <form className='flex flex-col justify-start h-[550px] overflow-y-scroll' ref={form} onSubmit={sendEmail} id='email-form'>
+      <div className='flex flex-col my-[.5em] mx-0 py-0 px-[1em]'>
         <label>Team</label>
-        <select type="text" name="teamName" id='teamName' onChange={props.updateTeamName} className='input-text editableFields'>
+        <select type="text" name="teamName" id='teamName' onChange={props.updateTeamName} className='py-[.5em] px-0 hover:scale-[1.1] focus:sclae-[1.1]'>
           <option>Select your team</option>
           <option>Your Team Name</option>
         </select>
       </div>
-      <div className='inputContainer'>
+      <div className='flex flex-col my-[.5em] mx-0 py-0 px-[1em]'>
         <label>First Name</label>
-        <input type="text" name="first_name" value={props.firstName} className='input-text' required readOnly />
+        <input type="text" name="first_name" value={props.firstName} className='py-[.5em] px-0' required readOnly />
       </div>
-      <div className='inputContainer'>
+      <div className='flex flex-col my-[.5em] mx-0 py-0 px-[1em]'>
         <label>Last Name</label>
-        <input type="text" name="last_name" value={props.lastName} className='input-text' required readOnly />
+        <input type="text" name="last_name" value={props.lastName} className='py-[.5em] px-0' required readOnly />
       </div>
-      <div className='inputContainer'>
+      <div className='flex flex-col my-[.5em] mx-0 py-0 px-[1em]'>
         <label>Occasion</label>
-        <select type="text" name="occasion" id='occasion' onChange={props.updateOccasionDate} className='input-text editableFields'>
+        <select type="text" name="occasion" id='occasion' onChange={props.updateOccasionDate} className='py-[.5em] px-0 hover:scale-[1.1] focus:sclae-[1.1]'>
           <option>Select one</option>
           <option>Birthday</option>
           <option>Work Anniversary</option>
         </select>
       </div>
-      <div className="inputContainer">
+      <div className="flex flex-col my-[.5em] mx-0 py-0 px-[1em]">
         <label>Occasion Date</label>
-        <input type="text" name="occasion_date" value={props.occasionDate} className='input-text' required readOnly />
+        <input type="text" name="occasion_date" value={props.occasionDate} className='py-[.5em] px-0' required readOnly />
       </div>
-      <div className="inputContainer">
+      <div className="flex flex-col my-[.5em] mx-0 py-0 px-[1em]">
         <label>List of Recipients</label>
-        <input type="text" name="mailing_list" value={props.mailingList} className='input-text' required readOnly />
+        <input type="text" name="mailing_list" value={props.mailingList} className='py-[.5em] px-0' required readOnly />
       </div>
-      <div className="inputContainer">
+      <div className="flex flex-col my-[.5em] mx-0 py-0 px-[1em]">
         <label>eCard URL</label>
-        <input type="text" name="ecard_url" id='ecardUrl' className='input-text editableFields' required />
+        <input type="text" name="ecard_url" id='ecardUrl' className='py-[.5em] px-0 hover:scale-[1.1] focus:sclae-[1.1]' required />
       </div>
-      <input type="submit" value="Send" id="submit-btn" />
+      <input className='font-bold p-[.5em] bg-[#28a745] focus:scale-[1.1] hover:scale-[1.1] focus:bg-white hover:bg-white focus:cursor-pointer hover:cursor-pointer my-0 mx-[1em]' type="submit" value="Send" id="submit-btn" />
     </form>
   );
 };
