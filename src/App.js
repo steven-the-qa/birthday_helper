@@ -77,11 +77,7 @@ function App() {
   }, [birthdayPersonBirthday, birthdayPersonWorkAnniversary])
 
   const updateTeamName = () => {
-    if (document.getElementById('teamName').value === 'Your Team Name') {
-      setTeamName('Your Team Name')
-    } else {
-            setTeamName('Select your team')
-          }
+    setTeamName(document.getElementById('teamName').value)
   }
 
   const updateBirthdayPerson = () => {

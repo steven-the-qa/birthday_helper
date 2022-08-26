@@ -12,11 +12,12 @@ const SendCard = (props) => {
       alert('Please select either Birthday or Work Anniversary for the Occasion field.')
       } else {
           if (window.confirm('Are you sure you want to send this eCard to your team for signing?')) {
-            if (props.teamName === 'Your Team Name') {
+            if (props.teamName === 'Girl Scouts of Badgerland') {
+              /* TODO: Set up EmailJS integration */
               emailjs.sendForm('SERVICE_ID', 'TEMPLATE_ID', form.current, 'USER_ID')
               .then((result) => {
                   console.log(result.text);
-                  alert('Yay! Your eCard has been sent out to the QA team for signing.')
+                  alert(`Yay! Your eCard has been sent out to the ${props.teamName} for signing.`)
               }, (error) => {
                   console.log(error.text);
                   alert(`Oh no! We were not able to successfuly send your eCard. Please refer to this error message:\n\n⚠️${error.text}`)
@@ -34,7 +35,7 @@ const SendCard = (props) => {
         <label>Team</label>
         <select type="text" name="teamName" id='teamName' onChange={props.updateTeamName} className='py-2 pl-2 text-black hover:cursor-pointer focus:cursor-pointer'>
           <option>Select your team</option>
-          <option>Your Team Name</option>
+          <option>Girl Scouts of Badgerland</option>
         </select>
       </div>
       <div className='flex flex-col my-1 mx-0 py-0 px-2'>
