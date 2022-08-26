@@ -29,43 +29,43 @@ const SendCard = (props) => {
   };
 
   return (
-    <form className='flex flex-col justify-start h-[550px] overflow-y-scroll' ref={form} onSubmit={sendEmail} id='email-form'>
-      <div className='flex flex-col my-[.5em] mx-0 py-0 px-[1em]'>
+    <form className='flex flex-col justify-start' ref={form} onSubmit={sendEmail} id='email-form'>
+      <div className='flex flex-col my-1 mx-0 py-0 px-2'>
         <label>Team</label>
-        <select type="text" name="teamName" id='teamName' onChange={props.updateTeamName} className='py-[.5em] px-0 hover:scale-[1.1] focus:sclae-[1.1]'>
+        <select type="text" name="teamName" id='teamName' onChange={props.updateTeamName} className='py-2 pl-2 text-black hover:cursor-pointer focus:cursor-pointer'>
           <option>Select your team</option>
           <option>Your Team Name</option>
         </select>
       </div>
-      <div className='flex flex-col my-[.5em] mx-0 py-0 px-[1em]'>
+      <div className='flex flex-col my-1 mx-0 py-0 px-2'>
         <label>First Name</label>
-        <input type="text" name="first_name" value={props.firstName} className='py-[.5em] px-0' required readOnly />
+        <input type="text" name="first_name" value={props.firstName} className='py-2 pl-2 text-black' required readOnly />
       </div>
-      <div className='flex flex-col my-[.5em] mx-0 py-0 px-[1em]'>
+      <div className='flex flex-col my-1 mx-0 py-0 px-2'>
         <label>Last Name</label>
-        <input type="text" name="last_name" value={props.lastName} className='py-[.5em] px-0' required readOnly />
+        <input type="text" name="last_name" value={props.lastName} className='py-2 pl-2 text-black' required readOnly />
       </div>
-      <div className='flex flex-col my-[.5em] mx-0 py-0 px-[1em]'>
+      <div className='flex flex-col my-1 mx-0 py-0 px-2'>
         <label>Occasion</label>
-        <select type="text" name="occasion" id='occasion' onChange={props.updateOccasionDate} className='py-[.5em] px-0 hover:scale-[1.1] focus:sclae-[1.1]'>
+        <select type="text" name="occasion" id='occasion' onChange={props.updateOccasionDate} className='py-2 pl-2 text-black hover:cursor-pointer focus:cursor-pointer'>
           <option>Select one</option>
           <option>Birthday</option>
           <option>Work Anniversary</option>
         </select>
       </div>
-      <div className="flex flex-col my-[.5em] mx-0 py-0 px-[1em]">
+      <div className="flex flex-col my-1 mx-0 py-0 px-2">
         <label>Occasion Date</label>
-        <input type="text" name="occasion_date" value={props.occasionDate} className='py-[.5em] px-0' required readOnly />
+        <input type="text" name="occasion_date" value={props.occasionDate} className='py-2 pl-2 text-black' required readOnly />
       </div>
-      <div className="flex flex-col my-[.5em] mx-0 py-0 px-[1em]">
+      <div className="flex flex-col my-1 mx-0 py-0 px-2">
         <label>List of Recipients</label>
-        <input type="text" name="mailing_list" value={props.mailingList} className='py-[.5em] px-0' required readOnly />
+        <input type="text" name="mailing_list" value={props.mailingList} className='py-2 pl-2 text-black' required readOnly />
       </div>
-      <div className="flex flex-col my-[.5em] mx-0 py-0 px-[1em]">
+      <div className="flex flex-col my-1 mx-0 py-0 px-2">
         <label>eCard URL</label>
-        <input type="text" name="ecard_url" id='ecardUrl' className='py-[.5em] px-0 hover:scale-[1.1] focus:sclae-[1.1]' required />
+        <input type="text" name="ecard_url" id='ecardUrl' className='py-2 pl-2 text-black hover:cursor-pointer focus:cursor-pointer' required />
       </div>
-      <input className='font-bold p-[.5em] bg-[#28a745] focus:scale-[1.1] hover:scale-[1.1] focus:bg-white hover:bg-white focus:cursor-pointer hover:cursor-pointer my-0 mx-[1em]' type="submit" value="Send" id="submit-btn" />
+      <input className='font-bold py-2 my-2 bg-[#6f42c1] focus:cursor-pointer hover:cursor-pointer' type="submit" value="Send" id="submit-btn" />
     </form>
   );
 };
