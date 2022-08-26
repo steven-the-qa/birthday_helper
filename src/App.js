@@ -23,7 +23,7 @@ function App() {
   const notifyUserOfFormat = () => {
     alert(`
       Your CSV should have this format:\n\n
-      Row 1 -> name, email, birthday, work anniversary\n
+      Row 1 -> name, email, birthday, workAnniversary\n
       Row 2 -> Test User1, test1@user.com, January 1, January 10\n
       Row 3 -> Test User2, test2@user.com, February 2, February 20\n
       Row 4 -> Test User3, test3@user.com, March 3, March 30\n
@@ -128,10 +128,10 @@ function App() {
 
   const birthdaysInOrder = birthdays.map(person => {
     if (person.birthday === '') {
-      return <li className='my-[1em] mx-0]' key={`${person.bithday}`} style={{'color': 'red'}}><strong>{person.name}</strong></li>
+      return <li className='my-[1em] mx-0]' key={`${person.birthday}-${person.name}`} style={{'color': 'red'}}><strong>{person.name}</strong></li>
     }
     else {
-      return <li className='my-[1em] mx-0]' key={`${person.birthday}`}>{person.birthday} ({person.name})</li>
+      return <li className='my-[1em] mx-0]' key={`${person.birthday}-${person.name}`}>{person.birthday} ({person.name})</li>
     }
   })
 
@@ -141,10 +141,10 @@ function App() {
 
   const workAnniversariesInOrder = workAnniversaries.map(person => {
     if (person.workAnniversary === '') {
-      return <li className='my-[1em] mx-0]' key={`${person.workAnniversary}`}style={{'color': 'red'}}><strong>{person.name}</strong></li>
+      return <li className='my-[1em] mx-0]' key={`${person.workAnniversary}-${person.name}}`}style={{'color': 'red'}}><strong>{person.name}</strong></li>
     }
     else {
-      return <li className='my-[1em] mx-0]' key={`${person.workAnniversary}`}>{person.workAnniversary} ({person.name})</li>
+      return <li className='my-[1em] mx-0]' key={`${person.workAnniversary}-${person.name}`}>{person.workAnniversary} ({person.name})</li>
     }
   })
 
@@ -215,17 +215,17 @@ function App() {
 
       <div className='flex py-0 px-[1em]'>
         <section className='h-[500px] m-w-[250px] overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
-          <h3 className='text-white text-center tracking-[1.25px]'>Birthdays</h3>
+          <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Birthdays</h3>
           <ul className='ml-0 pl-0 list-none'>{birthdaysInOrder}</ul>
         </section>
 
         <section className='h-[500px] m-w-[250px] overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
-          <h3 className='text-white text-center tracking-[1.25px]'>Work Anniversaries</h3>
+          <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Work Anniversaries</h3>
           <ul className='ml-0 pl-0 list-none'>{workAnniversariesInOrder}</ul>
         </section>
 
         <section className='h-[500px] m-w-[250px] overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
-          <h3 className='text-white text-center tracking-[1.25px]'>Names</h3>
+          <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Names</h3>
           <ul className='ml-0 pl-0 list-none'>{allNames}</ul>
         </section>
       </div>
