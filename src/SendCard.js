@@ -14,7 +14,7 @@ const SendCard = (props) => {
           if (window.confirm('Are you sure you want to send this eCard to your team for signing?')) {
             if (props.teamName === 'Girl Scouts of Badgerland') {
               /* TODO: Set up EmailJS integration */
-              emailjs.sendForm('SERVICE_ID', 'TEMPLATE_ID', form.current, 'USER_ID')
+              emailjs.sendForm('service_73ecv8r', 'template_04cm3t9', form.current, 'ME0xSuyegGJpr5gD0')
               .then((result) => {
                   console.log(result.text);
                   alert(`Yay! Your eCard has been sent out to the ${props.teamName} for signing.`)
