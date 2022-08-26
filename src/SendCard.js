@@ -64,7 +64,7 @@ const SendCard = (props) => {
       </div>
       <div className="flex flex-col my-1 mx-0 py-0 px-2">
         <label>eCard URL</label>
-        <input type="text" name="ecard_url" id='ecardUrl' className='py-2 pl-2 text-black hover:cursor-pointer focus:cursor-pointer' required />
+        <input type="text" name="ecard_url" id='ecardUrl' className='py-2 pl-2 text-black' required />
       </div>
       <input className='font-bold py-2 my-2 bg-[#6f42c1] focus:cursor-pointer hover:cursor-pointer' type="submit" value="Send" id="submit-btn" />
     </form>
