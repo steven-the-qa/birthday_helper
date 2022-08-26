@@ -166,16 +166,14 @@ function App() {
         <p className='text-xl'>Automating the mental overhead of doing birthday e-cards for your team <span role='img' aria-label='party popper emoji'>🎉</span></p>
       </header>
 
-      <section className='flex flex-col justify-evenly border border-solid border-[3px] border-white bg-[#6f42c1] my-[1em] mx-[3em] rounded-lg p-[2em]'>
-        <a
-          className='text-white text-xl text-center font-bold'
-          href='https://docs.google.com/document/d/1oFmriwRWDwYyQ5jGYjY_WjtTX4ITBIPFnaTGACQwtNs/edit?usp=sharing'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+      <a
+        className='flex flex-col justify-evenly border border-solid border-[3px] border-white bg-[#6f42c1] my-[1em] mx-[3em] rounded-lg p-[2em] text-white text-xl text-center font-bold'
+        href='https://docs.google.com/document/d/1oFmriwRWDwYyQ5jGYjY_WjtTX4ITBIPFnaTGACQwtNs/edit?usp=sharing'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
           Quick Start Guide
-        </a>
-      </section>
+      </a>
 
       <section className='flex flex-col justify-evenly border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em] text-white'>
         <div className='flex flex-col'>
