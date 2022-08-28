@@ -115,7 +115,7 @@ function App() {
   }, [birthdayPerson, birthdayPeople])
 
   const allNames = birthdayPeople.map(person => {
-    return <li className='my-[1em] mx-0]' key={`${person.name}`}><strong>{person.name}</strong> ({person.email})</li>
+    return <li className='my-[1em] mx-0]' key={`${person.name}`}><strong>{person.name}</strong><br />{person.email}</li>
   })
 
   let birthdays = birthdayPeople.map(person => {
@@ -127,7 +127,7 @@ function App() {
       return <li className='my-[1em] mx-0]' key={`${person.birthday}-${person.name}`} style={{'color': 'red'}}><strong>{person.name}</strong></li>
     }
     else {
-      return <li className='my-[1em] mx-0]' key={`${person.birthday}-${person.name}`}>{person.birthday} ({person.name})</li>
+      return <li className='my-[1em] mx-0]' key={`${person.birthday}-${person.name}`}><strong>{person.birthday}</strong><br />{person.name}</li>
     }
   })
 
@@ -140,7 +140,7 @@ function App() {
       return <li className='my-[1em] mx-0]' key={`${person.workAnniversary}-${person.name}}`}style={{'color': 'red'}}><strong>{person.name}</strong></li>
     }
     else {
-      return <li className='my-[1em] mx-0]' key={`${person.workAnniversary}-${person.name}`}>{person.workAnniversary} ({person.name})</li>
+      return <li className='my-[1em] mx-0]' key={`${person.workAnniversary}-${person.name}`}><strong>{person.workAnniversary}</strong><br />{person.name}</li>
     }
   })
 
@@ -186,15 +186,21 @@ function App() {
         <button className='font-bold p-2 my-2 bg-[#6f42c1] text-white focus:cursor-pointer hover:cursor-pointer' onClick={updateBirthdayPerson}>Update</button>
       </section>
 
-      <p id="advisory" className='text-black border border-[3px] border-solid border-white my-2 p-4 rounded-lg'>
-        Schedule the eCard to be sent to 
-          <strong className='text-white bg-[#6f42c1] p-2 border border-[2px] border-solid border-black rounded-lg my-0 mx-[1em] hover:scale-[3] focus:scale-[3] hover:cursor-pointer focus:cursor-pointer' onClick={copyToClipboard}>
-            <span id='emailText'>{birthdayPersonEmail ? birthdayPersonEmail : 'Birthday/Work Anniversary Person\'s Email'}</span>
-            <span>{' '}</span>
+      {birthdayPersonEmail &&
+        <section className='flex flex-col text-white border border-[3px] border-solid border-white my-2 p-4 rounded-lg'>
+          <p>
+            Schedule the eCard to be sent to 
+          </p>
+          <p className='self-start font-bold bg-[#6f42c1] p-2 mx-0 my-1 border border-[2px] border-solid border-black rounded-lg hover:cursor-pointer focus:cursor-pointer' onClick={copyToClipboard}>
             <FontAwesomeIcon icon={faCopy} />
-          </strong> 
-        on their special day!
-      </p>
+            <span id='emailText'>{` ${birthdayPersonEmail}`}</span>
+          </p>
+          <p>
+            {` on their special day!`}
+          </p>
+        </section>
+      }
+
 
       <SendCard
         teamName={teamName}
@@ -207,18 +213,18 @@ function App() {
         mailingList={mailingList}
       />
 
-      <div className='flex py-0 px-[1em]'>
-        <section className='h-[500px] m-w-[250px] overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
+      <div className='flex flex-col lg:flex-row py-0 px-[1em]'>
+        <section className='max-h-[400px] flex flex-col overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
           <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Birthdays</h3>
           <ul className='ml-0 pl-0 list-none'>{birthdaysInOrder}</ul>
         </section>
 
-        <section className='h-[500px] m-w-[250px] overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
+        <section className='max-h-[400px] flex flex-col overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
           <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Work Anniversaries</h3>
           <ul className='ml-0 pl-0 list-none'>{workAnniversariesInOrder}</ul>
         </section>
 
-        <section className='h-[500px] m-w-[250px] overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
+        <section className='max-h-[400px] flex flex-col overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
           <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Names</h3>
           <ul className='ml-0 pl-0 list-none'>{allNames}</ul>
         </section>
