@@ -1,33 +1,37 @@
 import React, { useRef } from 'react';
 import emailjs from 'emailjs-com';
+import * as teamsData from './data/teams.json';
 
 const SendCard = (props) => {
   const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
-    if (props.teamName === 'Select your team') {
-      alert('Please choose your team\'s name from the list.')
-    } else if (props.occasion === 'Select one') {
-      alert('Please select either Birthday or Work Anniversary for the Occasion field.')
-      } else {
-          if (window.confirm('Are you sure you want to send this eCard to your team for signing?')) {
-            if (props.teamName === 'Girl Scouts of Badgerland') {
-              /* TODO: Set up EmailJS integration */
-              emailjs.sendForm('service_73ecv8r', 'template_04cm3t9', form.current, 'ME0xSuyegGJpr5gD0')
-              .then((result) => {
-                  console.log(result.text);
-                  alert(`Yay! Your eCard has been sent out to the ${props.teamName} for signing.`)
-              }, (error) => {
-                  console.log(error.text);
-                  alert(`Oh no! We were not able to successfuly send your eCard. Please refer to this error message:\n\n⚠️${error.text}`)
-              });
-            }
-          } else {
-              alert('Your eCard has not been sent. Please ensure you have filled out the form completely with valid data.\n\nIf this is your first time using this tool, you will need to download the project and add your EmailJS service, template, and user ids before the form will send anything.')
-            }
-        }
-  };
+    const team = teamsData[props.teamName];
+    if (!team) {
+      alert('Please choose your team\'s name from the list.\n\nIf your team is not on the list, please reach out to Steven Boutcher @ boutchersj@gmail.com about getting your team set up to use this tool. Thank you!')
+    }
+    else if (props.occasion === 'Select one') {
+        alert('Please select either Birthday or Fetchiversary for the Occasion field.')
+    }
+    else {
+      if (window.confirm(`Are you sure you want to send this eCard to ${props.teamName} for signing?`)) {
+          // EmailJS dashboard should have all of this information for your team
+          // emailjs.sendForm(Email Service ID, Template ID, form.current, User ID)
+          emailjs.sendForm(team.serviceId, team.templateId, form.current, team.userId)
+          .then((result) => {
+              console.log(result.text);
+              alert(`Yay! Your eCard has been sent out to the ${props.teamName} team for signing.`);
+          }, (error) => {
+              console.log(error.text);
+              alert(`Oh no! We were not able to successfuly send your eCard. Please reach out to Steven Boutcher @ boutchersj@gmail.com with this error message for assistance with debugging:\n\n ${error.text}`);
+          });
+      }
+      else {
+        alert('Your eCard has not been sent. Please ensure you have filled out the form completely with valid data.')
+      }
+    }
+  }
 
   return (
     <form className='flex flex-col justify-start' ref={form} onSubmit={sendEmail} id='email-form'>

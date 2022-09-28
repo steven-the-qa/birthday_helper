@@ -98,6 +98,8 @@ function App() {
       setBirthdayPersonBirthday(birthdayPerson ? birthdayPerson.birthday : 'Birthday not found')
       setBirthdayPersonWorkAnniversary(birthdayPerson ? birthdayPerson.workAnniversary : 'Work Anniversary not found')
     } else {
+      // TODO: Find out why this gets thrown on app launch
+      // alert('Birthday person data cannot be updated')
       console.log('Birthday person data cannot be updated')
     }
   }, [birthdayPerson])
@@ -110,6 +112,8 @@ function App() {
         .filter(val => val !== false)
       setMailingList(mailingListArr.join(','))
     } else {
+      // TODO: Find out why this gets thrown on app launch
+      // alert('Mailing list cannot be updated')
       console.log('Mailing list cannot be updated')
     }
   }, [birthdayPerson, birthdayPeople])
@@ -167,7 +171,7 @@ function App() {
       </header>
 
       <a
-        className='flex flex-col justify-evenly border border-solid border-[3px] border-white bg-[#6f42c1] my-[1em] mx-[3em] rounded-lg p-[2em] text-white text-xl text-center font-bold'
+        className='flex flex-col justify-evenly border-solid border-[3px] border-white bg-[#6f42c1] my-[1em] mx-[3em] rounded-lg p-[2em] text-white text-xl text-center font-bold'
         href='https://docs.google.com/document/d/1oFmriwRWDwYyQ5jGYjY_WjtTX4ITBIPFnaTGACQwtNs/edit?usp=sharing'
         target='_blank'
         rel='noopener noreferrer'
@@ -175,7 +179,7 @@ function App() {
           Quick Start Guide
       </a>
 
-      <section className='flex flex-col justify-evenly border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em] text-white'>
+      <section className='flex flex-col justify-evenly border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em] text-white'>
         <div className='flex flex-col'>
           <label className='label-file text-white font-bold' htmlFor="file" onClick={notifyUserOfFormat}>Upload your CSV of names, emails, birthdays, and work anniversaries:</label>
           <input type="file" accept=".csv" multiple={false} onChange={handleCSV} name="file" id="file" className="mt-[1em]" />
@@ -187,11 +191,11 @@ function App() {
       </section>
 
       {birthdayPersonEmail &&
-        <section className='flex flex-col text-white border border-[3px] border-solid border-white my-2 p-4 rounded-lg'>
+        <section className='flex flex-col text-white border-[3px] border-solid border-white my-2 p-4 rounded-lg'>
           <p>
             Schedule the eCard to be sent to 
           </p>
-          <p className='self-start font-bold bg-[#6f42c1] p-2 mx-0 my-1 border border-[2px] border-solid border-black rounded-lg hover:cursor-pointer focus:cursor-pointer' onClick={copyToClipboard}>
+          <p className='self-start font-bold bg-[#6f42c1] p-2 mx-0 my-1 border-[2px] border-solid border-black rounded-lg hover:cursor-pointer focus:cursor-pointer' onClick={copyToClipboard}>
             <FontAwesomeIcon icon={faCopy} />
             <span id='emailText'>{` ${birthdayPersonEmail}`}</span>
           </p>
@@ -214,17 +218,17 @@ function App() {
       />
 
       <div className='flex flex-col lg:flex-row py-0 px-[1em]'>
-        <section className='max-h-[400px] flex flex-col overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
+        <section className='max-h-[400px] flex flex-col overflow-y-scroll border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
           <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Birthdays</h3>
           <ul className='ml-0 pl-0 list-none'>{birthdaysInOrder}</ul>
         </section>
 
-        <section className='max-h-[400px] flex flex-col overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
+        <section className='max-h-[400px] flex flex-col overflow-y-scroll border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
           <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Work Anniversaries</h3>
           <ul className='ml-0 pl-0 list-none'>{workAnniversariesInOrder}</ul>
         </section>
 
-        <section className='max-h-[400px] flex flex-col overflow-y-scroll border border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
+        <section className='max-h-[400px] flex flex-col overflow-y-scroll border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em]'>
           <h3 className='text-xl font-bold text-white text-center tracking-[1.25px]'>Names</h3>
           <ul className='ml-0 pl-0 list-none'>{allNames}</ul>
         </section>
