@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import testData from './birthday_people.json'
+import testData from './data/test.json'
 import SendCard from './SendCard'
 import Papa from 'papaparse'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
