@@ -20,17 +20,6 @@ function App() {
 
   // CSV Parsing
 
-  const notifyUserOfFormat = () => {
-    alert(`
-      Your CSV should have this format:\n\n
-      Row 1 -> name, email, birthday, workAnniversary\n
-      Row 2 -> Test User1, test1@user.com, January 1, January 10\n
-      Row 3 -> Test User2, test2@user.com, February 2, February 20\n
-      Row 4 -> Test User3, test3@user.com, March 3, March 30\n
-      etc.`
-    )
-  }
-
   const handleCSV = (event) => {
     if (event.target.files && event.target.files.length > 0) {
         Papa.parse(event.target.files[0], {
@@ -42,7 +31,8 @@ function App() {
         })
     }
     else {
-      alert(`File selection was not successful. Please reload the page and try again.`)
+      console.log('File selection was not successful. Please reload the page and try again.')
+      alert('File selection was not successful. Please reload the page and try again.')
     }
   }
 
@@ -68,27 +58,28 @@ function App() {
       setOccasion('Birthday')
       setOccasionDate(birthdayPersonBirthday)
     } else if (document.getElementById('occasion').value === 'Work Anniversary') {
-      setOccasion('Work Anniversary')
-      setOccasionDate(birthdayPersonWorkAnniversary)
-    } else {
-      setOccasion('Select one')
-      setOccasionDate('Select an occasion')
-    }
+        setOccasion('Work Anniversary')
+        setOccasionDate(birthdayPersonWorkAnniversary)
+      } else {
+          setOccasion('Select one')
+          setOccasionDate('Select an occasion')
+        }
   }, [birthdayPersonBirthday, birthdayPersonWorkAnniversary])
 
   const updateTeamName = () => {
     setTeamName(document.getElementById('teamName').value)
   }
 
-  const updateBirthdayPerson = () => {
+  const updateBirthdayPerson = (e) => {
     // Update birthday person object
-    if (birthdayPeople.find(person => person.name === document.getElementById('nameInput').value) !== undefined) {
-      setBirthdayPerson(birthdayPeople.find(person => person.name === document.getElementById('nameInput').value))
+    if (birthdayPeople.find(person => person.name === e.target.value) !== undefined) {
+      setBirthdayPerson(birthdayPeople.find(person => person.name === e.target.value))
     } else {
-      setBirthdayPerson('')
-      console.log('Birthday person could not be found')
-    }
+        alert('Please select a name from the list')
+        console.log('Please select a name from the list')
+      }
   }
+
   const updateBirthdayPersonData = useCallback(() => {
     if (birthdayPerson.name) {
       // Update birthday person data variables
@@ -98,10 +89,9 @@ function App() {
       setBirthdayPersonBirthday(birthdayPerson ? birthdayPerson.birthday : 'Birthday not found')
       setBirthdayPersonWorkAnniversary(birthdayPerson ? birthdayPerson.workAnniversary : 'Work Anniversary not found')
     } else {
-      // TODO: Find out why this gets thrown on app launch
-      // alert('Birthday person data cannot be updated')
-      console.log('Birthday person data cannot be updated')
-    }
+        alert('Birthday person data cannot be updated')
+        console.log('Birthday person data cannot be updated')
+      }
   }, [birthdayPerson])
 
   const updateMailingList = useCallback(() => {
@@ -112,14 +102,17 @@ function App() {
         .filter(val => val !== false)
       setMailingList(mailingListArr.join(','))
     } else {
-      // TODO: Find out why this gets thrown on app launch
-      // alert('Mailing list cannot be updated')
-      console.log('Mailing list cannot be updated')
-    }
+        alert('Mailing list cannot be updated')
+        console.log('Mailing list cannot be updated')
+      }
   }, [birthdayPerson, birthdayPeople])
 
   const allNames = birthdayPeople.map(person => {
     return <li className='my-[1em] mx-0]' key={`${person.name}`}><strong>{person.name}</strong><br />{person.email}</li>
+  })
+
+  const allNamesOptions = birthdayPeople.map(person => {
+    return <option key={`${person.name}-option`} value={person.name}>{person.name}</option>
   })
 
   let birthdays = birthdayPeople.map(person => {
@@ -129,10 +122,9 @@ function App() {
   const birthdaysInOrder = birthdays.map(person => {
     if (person.birthday === '') {
       return <li className='my-[1em] mx-0]' key={`${person.birthday}-${person.name}`} style={{'color': 'red'}}><strong>{person.name}</strong></li>
-    }
-    else {
-      return <li className='my-[1em] mx-0]' key={`${person.birthday}-${person.name}`}><strong>{person.birthday}</strong><br />{person.name}</li>
-    }
+    } else {
+        return <li className='my-[1em] mx-0]' key={`${person.birthday}-${person.name}`}><strong>{person.birthday}</strong><br />{person.name}</li>
+      }
   })
 
   let workAnniversaries = birthdayPeople.map(person => {
@@ -155,13 +147,15 @@ function App() {
   }
 
   useEffect(() => {
-    updateBirthdayPersonData();
+    if (birthdayPerson) {
+      updateBirthdayPersonData();
+      updateMailingList();
+    }
     updateOccasionDate();
-    updateMailingList();
-  }, [updateBirthdayPersonData, updateOccasionDate, updateMailingList])
+  }, [birthdayPerson, updateBirthdayPersonData, updateOccasionDate, updateMailingList])
 
-  // const girlScoutsGreen = '#28a745'
-  // const girlScoutsPurple = '#6f42c1'
+  // Girl Scouts green = '#28a745'
+  // Girl Scouts purple = '#6f42c1'
 
   return (
     <div className="bg-[#28a745] text-white font-sans flex flex-col justify-evenly items-center">
@@ -181,13 +175,15 @@ function App() {
 
       <section className='flex flex-col justify-evenly border-[3px] border-solid border-white my-[1em] mx-[3em] rounded-lg p-[2em] text-white'>
         <div className='flex flex-col'>
-          <label className='label-file text-white font-bold' htmlFor="file" onClick={notifyUserOfFormat}>Upload your CSV of names, emails, birthdays, and work anniversaries:</label>
+          <label className='label-file text-white font-bold' htmlFor="file">Upload your CSV <em>(see Quick Start Guide for formatting)</em>:</label>
           <input type="file" accept=".csv" multiple={false} onChange={handleCSV} name="file" id="file" className="mt-[1em]" />
         </div>
         <br></br>
-        <label  className='font-bold' htmlFor='birthdayPerson'>Birthday/Work Anniversary Person</label>
-        <input type='text' name='birthdayPerson' className='py-2 pl-2 text-black' id="nameInput" />
-        <button className='font-bold p-2 my-2 bg-[#6f42c1] text-white focus:cursor-pointer hover:cursor-pointer' onClick={updateBirthdayPerson}>Update</button>
+        <label  className='font-bold mb-2' htmlFor='birthdayPerson'>Birthday / Work Anniversary Person</label>
+        <select name='birthdayPerson' className='py-2 pl-2 text-black' id="nameInput" onChange={updateBirthdayPerson} value={birthdayPerson.name}>
+          <option key='select-a-name-option' value='Select a name'>Select a name</option>
+          {allNamesOptions}
+        </select>
       </section>
 
       {birthdayPersonEmail &&

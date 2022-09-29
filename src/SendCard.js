@@ -12,7 +12,7 @@ const SendCard = (props) => {
       alert('Please choose your team\'s name from the list.\n\nIf your team is not on the list, please reach out to Steven Boutcher @ boutchersj@gmail.com about getting your team set up to use this tool. Thank you!')
     }
     else if (props.occasion === 'Select one') {
-        alert('Please select either Birthday or Fetchiversary for the Occasion field.')
+        alert('Please select either Birthday or Work Anniversary for the Occasion field.')
     }
     else {
       if (window.confirm(`Are you sure you want to send this eCard to ${props.teamName} for signing?`)) {
@@ -52,10 +52,10 @@ const SendCard = (props) => {
       </div>
       <div className='flex flex-col my-1 mx-0 py-0 px-2'>
         <label>Occasion</label>
-        <select type="text" name="occasion" id='occasion' onChange={props.updateOccasionDate} className='py-2 pl-2 text-black hover:cursor-pointer focus:cursor-pointer'>
-          <option>Select one</option>
-          <option>Birthday</option>
-          <option>Work Anniversary</option>
+        <select type="text" name="occasion" id='occasion' value={props.occasion} onChange={props.updateOccasionDate} className='py-2 pl-2 text-black hover:cursor-pointer focus:cursor-pointer'>
+          <option value="Select one">Select one</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Work Anniversary">Work Anniversary</option>
         </select>
       </div>
       <div className="flex flex-col my-1 mx-0 py-0 px-2">
